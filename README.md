@@ -341,8 +341,7 @@ getMin(Q1,Q2):
 ```python
 MST-Kruskal(G) :
     T = ∅
-    for each v in V :
-        makeSet(v)
+    for each v in V : makeSet(v)
     sort E by weights
     for each (u,v) in E :
         if findSet(u) ≠ findSet(v) :
@@ -387,8 +386,7 @@ MST-Prim(G) :
 ```python
 MST-Boruvka(G) :
     T = ∅
-    for each v in V :
-        makeSet(v)
+    for each v in V : makeSet(v)
 
     while |T| < |V|-1 :
         new cheapest[|V|] := array of edges
@@ -442,8 +440,7 @@ BFS(G, s) :
 	
 ```python
 DFS(G) :
-    for each v in V :
-        v.color = WHITE
+    for each v in V : v.color = WHITE
     for each v in V :
         if v.color = WHITE :
             DFS-VISIT(G, v)
@@ -465,8 +462,7 @@ DFS-VISIT(G, n) :
 ```python
 DFS-Number-Of-Connected-Components(G) :
     counter = 0
-    for each v in V :
-        v.color = WHITE
+    for each v in V : v.color = WHITE
     for each v in V :
         if v.color = WHITE :
             counter++
@@ -481,8 +477,7 @@ DFS-Number-Of-Connected-Components(G) :
 	
 ```python
 DFS-Has-Cycle(G) :
-    for each v in V :
-        v.color = WHITE
+    for each v in V : v.color = WHITE
     for each v in V :
         if v.color = WHITE :
             DFS-VISIT(G, v)
@@ -706,8 +701,7 @@ is-Vertex-on-Diameter(T, v) :
 
 ```python
 Dijkstra(G, s) :
-    for v in V :
-        v.dist = ∞
+    for v in V : v.dist = ∞
 
     s.dist = 0
     Q = V

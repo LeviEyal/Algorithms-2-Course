@@ -722,7 +722,7 @@ Dijkstra(G, s) :
 <div dir='rtl' lang='he'>
 
 # בניית עץ מרשימת דרגות
-* צריך קודם לבדוק שאכן מתקיים `sum(degs) = 2*(|V|-1)`
+* צריך קודם לבדוק שאכן מתקיים `Sum(degs) = 2*(|V|-1)`
 * סיבוכיות: `O(VlogV)` אם המערך לא ממוין. `O(V)` אם המערך ממוין כבר.
 	
 </div>
@@ -730,13 +730,11 @@ Dijkstra(G, s) :
 ```python
 GenerateTreebyDegrees(deg[N]) :
     sort(deg)
-    j = 0
-    for i=0 to N :
-        if deg[i] > 1 :
-            j = i
-            break
+
+    j = -1
+    while deg[++j] < 1 : loop
     
-    new Tree[N]
+    new Tree[N-1]
     for i=0 to N-2 :
         Tree[i] = j
         if --deg[j] = 1 :

@@ -65,7 +65,7 @@ FW-wheighted(g[N,N]) :
 
 ```python
 FW-wheighted-paths(g[N,N]) :
-    new empty-string paths[N,N]
+    New empty-string paths[N,N]
     for i=0 to N :
         for j=0 to N :
             paths[i,j] = i + "->" + j
@@ -145,7 +145,7 @@ Has-Negative-Cycles-UnDirected(g[N,N]) : O(n^2)
 
 ```python
 Degrees-of-vertices(g[N,N]) : O(n^2)
-    new D[N] = {0,0,..,0}
+    New D[N] = {0,0,..,0}
     for i=0 to N :
         for j=0 to N :
             if i ≠ j AND g[i,j] ≠ ∞:
@@ -162,7 +162,7 @@ Degrees-of-vertices(g[N,N]) : O(n^2)
 
 ```python
 Degrees-of-vertices(g[N,N]) : O(n^2)
-    new D[N] = {0,0,..,0}
+    New D[N] = {0,0,..,0}
     for i=0 to N :
         for j=0 to N :
             if g[i,j] = true:
@@ -234,7 +234,7 @@ Best-Cycle(A[N]) :
 Super-Best-basic(A[rows,cols]):
     maxSum = 0
     for i=0 to rows :
-        new help[cols]
+        New help[cols]
         for j=i to rows :
             for k=0 to cols :
                 help[k] += A[j,k]
@@ -253,7 +253,7 @@ Super-Best(A[rows,cols]) :
     maxSum, start_x, start_y ,end_x, end_y = 0
 
     for i=0 to rows :
-        new help[cols]
+        New help[cols]
         for j=i to rows :
             for k=0 to cols :
                 help[k] += A[j,k]
@@ -279,7 +279,7 @@ Super-Best(A[rows,cols]) :
 Huffman(C) :
     Q = C
     while |Q| > 1 :
-        new node z
+        New node z
         z.left = x = q.extractMin()
         z.right = y = q.extractMin()
         z.freq = x.freq + y.freq
@@ -313,7 +313,7 @@ Huffman-sorted(C) :
     Q1 = C
     Q2 = ∅
     while |Q1| + |Q2| > 1 :
-        new node z
+        New node z
         z.left = x = getMin(Q1,Q2)
         z.right = y = getMin(Q1,Q2)
         z.freq = x.freq + y.freq
@@ -389,7 +389,7 @@ MST-Boruvka(G) :
     for each v in V : makeSet(v)
 
     while |T| < |V|-1 :
-        new cheapest[|V|] := array of edges
+        New cheapest[|V|] := array of edges
         for (u,v) in E :
             g1 = findSet(u)
             g2 = findSet(v)
@@ -728,12 +728,28 @@ GenerateTreebyDegrees(deg[N]) :
     j = -1
     while deg[++j] < 1 : loop
     
-    new Tree[N-1]
-    for i=0 to N-2 :
+    New Tree[N]
+    for i=1 to N :
         Tree[i] = j
         if --deg[j] = 1 :
             j++
-    Tree[N-1] = N
+    Tree[N] = N
+    return Tree
+
+```
+```python
+GenerateTreebyDegrees(deg[N]) :
+    sort(deg)
+
+    j = -1
+    while deg[++j] < 1 : loop
+    
+    New Tree[N][N] = {false}
+    for i=1 to N :
+        Tree[i][j] = true
+        Tree[j][i] = true
+        if --deg[j] = 1 :
+            j++
     return Tree
 
 ```

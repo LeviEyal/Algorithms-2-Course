@@ -767,7 +767,7 @@ AHU-Tree-Isomorphism(T1, T2) :
 findCode(u)
     u.color = BLACK
     if u is a leaf :
-        childrenCodes[u].add("10")
+        return "10"
     else
         for each v in adj[u] :
             if v.color = WHITE :    //then v is child of u

@@ -749,7 +749,7 @@ GenerateTreebyDegrees(deg[N]) :
 * אם לא נתון מה השורש של העץ אז נשתמש באלגוריתם שריפה למציאת מרכז העץ והוא יהיה השורש.
 * אם לעץ הראשון יש מרכז אחד ולשני יש שני מרכזים, אזי העצים לא איזומורפיים.
 * אם יש 2 מרכזים לעץ, נבדוק אם המחרוזת של העץ הראשון שווה למחרוזת של העץ השני בחילופי תפקידים בין המרכזים שנמצאו.
-* סיבוכיות: `O(V)`
+* סיבוכיות: `O(VlogV)`
 	
 </div>
 
@@ -768,7 +768,7 @@ findCode(u)
     u.color = BLACK
     if u is a leaf :
         return "10"
-        
+
     for each v in adj[u] :
         if v.color = WHITE :    //then v is child of u
             childrenCodes[u].add(findCode(v))

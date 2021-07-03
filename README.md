@@ -625,10 +625,10 @@ Diameter-Fire(T) :
         future = ∅
         for each leaf in leaves :
             leaf.deg = 0
+            n--
             for each v in adj[leaf] :
                 if --v.deg = 1 :
                     future.add(v)
-                n--
         radius++
         leaves = future
 

@@ -757,24 +757,24 @@ GenerateTreebyDegrees(deg[N]) :
 AHU-Tree-Isomorphism(T1, T2) :
     r1 = T1.root
     r2 = T2.root
-    New global List<String> codes[|V|]
-    code1 = Assign-Canonical-Codes(r1)
-    code2 = Assign-Canonical-Codes(r2)
+    New global List<String> childrenCodes[|V|]
+    code1 = findCode(r1)
+    code2 = findCode(r2)
     return (code1 == code2)
 ```
 
 ```python
-Assign-Canonical-Codes(u)
+findCode(u)
     u.color = BLACK
     if u is a leaf :
-        codes[u].add("10")
+        childrenCodes[u].add("10")
     else
         for each v in adj[u] :
             if v.color = WHITE :
-                codes[u].add(Assign-Canonical-Names(v))
-        Sort(codes[u])
+                childrenCodes[u].add(findCode(v))
+        Sort(childrenCodes[u])
         temp = ""
-        for each s in codes[u] :
+        for each s in childrenCodes[u] :
             temp += s
         return "1"+temp+"0"
 ```

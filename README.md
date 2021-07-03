@@ -8,6 +8,7 @@
     - [תת מטריצה עם סכום תאים מקסימלי](#תת-מטריצה-עם-סכום-תאים-מקסימלי)
     - [עץ פורש מינימלי](#עץ-פורש-מינימלי)
         - [קרוסקל](#עץ-פורש-מינימלי)
+        - [קרוסקל הפוך](#עץ-פורש-מינימלי)
         - [פרים](#עץ-פורש-מינימלי)
         - [בורובקה](#עץ-פורש-מינימלי)
     - [מעבר על גרפים](#מעבר-על-גרפים)
@@ -350,6 +351,25 @@ MST-Kruskal(G) :
             union(u, v)
     return T
 
+```
+<div dir='rtl' lang='he'>
+	
+יצירת עץ פורש מינימלי - קרוסקל הפוך:
+* הרעיון הוא להתחיל עם "עץ" שיש בו את כל הצלעות של G. נעבור על הצלעות מהגדולות לקטנות ונשאל על כל צלע האם אפשר לנתק אותה מהגרף והוא עדיין יישאר קשיר. אם כן נמחק את הצלע מהעץ, ככה באותו האופן עד שנגיע לעץ בגודל תקין.
+* סיבוכיות: `O(|E|(|E|+|V|))`
+	
+</div>
+	
+```python
+MST-Reversed-Kruskal(G) :
+    T = E
+    Q = E
+    while |T| > |V|-1 :
+        e = Q.extractMax()
+        G.removeEdge(e)
+        if isConnected = false :
+            G.addEdge(e)
+    return T
 ```
 <div dir='rtl' lang='he'>
 	
@@ -757,6 +777,9 @@ GenerateTreebyDegrees(deg[N]) :
 AHU-Tree-Isomorphism(T1, T2) :
     r1 = T1.root
     r2 = T2.root
+    if r1 = null AND r2 = null :
+        r1 = findCenter(T1)    // by Fire Algorithm
+        r2 = findCenter(T2)
     New global List<String> childrenCodes[|V|]
     code1 = findCode(r1)
     code2 = findCode(r2)
@@ -770,7 +793,7 @@ findCode(u)
         return "10"
 
     for each v in adj[u] :
-        if v.color = WHITE :    //then v is child of u
+        if v.color = WHITE :    // then v is child of u
             childrenCodes[u].add(findCode(v))
     Sort(childrenCodes[u])
     temp = ""

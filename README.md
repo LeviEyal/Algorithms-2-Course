@@ -727,7 +727,7 @@ GenerateTreebyDegrees(deg[N]) :
     sort(deg)
 
     j = 0
-    while deg[j] < 1 : j++
+    while deg[j] = 1 : j++
     
     New Tree[N][N] = {false}
     for i=0 to N-2 :

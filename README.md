@@ -275,7 +275,7 @@ Super-Best(A[rows,cols]) :
 שלב ראשון בניית העץ:
 * סיבוכיות: `O(n*log(n))`	
 </div>
-	
+
 ```python
 Huffman(C) :
     Q = C

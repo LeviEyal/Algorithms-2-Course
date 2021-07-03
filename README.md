@@ -716,8 +716,9 @@ Dijkstra(G, s) :
 <div dir='rtl' lang='he'>
 
 # בניית עץ מרשימת דרגות
-* צריך קודם לבדוק שאכן מתקיים `Sum(degs) = 2*(|V|-1)`
+* צריך לבדוק קודם שאכן מתקיים  `Sum(degs) = 2*(|V|-1)`  לפני שמתחילים את האלגוריתם.
 * סיבוכיות: `O(VlogV)` אם המערך לא ממוין. `O(V)` אם המערך ממוין כבר.
+* הערה: האינדקס של האיבר הראשון במערך הוא 0, האינדקס של האיבר האחרון במערך הוא N-1.
 	
 </div>
 
@@ -725,33 +726,18 @@ Dijkstra(G, s) :
 GenerateTreebyDegrees(deg[N]) :
     sort(deg)
 
-    j = -1
-    while deg[++j] < 1 : loop
-    
-    New Tree[N]
-    for i=1 to N :
-        Tree[i] = j
-        if --deg[j] = 1 :
-            j++
-    Tree[N] = N
-    return Tree
-
-```
-```python
-GenerateTreebyDegrees(deg[N]) :
-    sort(deg)
-
-    j = -1
-    while deg[++j] < 1 : loop
+    j = 0
+    while deg[j] < 1 : j++
     
     New Tree[N][N] = {false}
-    for i=1 to N :
+    for i=0 to N-2 :
         Tree[i][j] = true
         Tree[j][i] = true
         if --deg[j] = 1 :
             j++
+    Tree[N-2][N-1] = true
+    Tree[N-1][N-2] = true
     return Tree
 
-```
 
 

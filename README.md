@@ -491,7 +491,20 @@ DFS-VISIT(G, n) :
             DFS-VISIT(G, v)
     n.color = BLACK
 ```
+<div dir='rtl' lang='he'>
+	
+בדיקה האם צלע נתונה נמצאת על מעגל:
+* סיבוכיות: `O(|V|+|E|)`
+</div>
 
+```python
+Is-Edge-On-Cycle(G, e) :
+    u = e.u
+    v = e.v
+    G.removeEdge(e)
+    BFS(v)
+    return (u.color ≠ WHITE)
+```
 <div dir='rtl' lang='he'>
 	
 מציאת מספר רכיבי קשירות בגרף:
@@ -519,7 +532,8 @@ DFS-Has-Cycle(G) :
     for each v in V : v.color = WHITE
     for each v in V :
         if v.color = WHITE :
-            DFS-VISIT(G, v)
+            if DFS-VISIT(G, v) = true :
+                return true
     return false
 ```
 
@@ -531,8 +545,10 @@ DFS-VISIT(G, n) :
         if v.color = GRAY : 
             return true
         if v.color = WHITE :
-            DFS-VISIT(G, v)
+            if DFS-VISIT(G, v) = true :
+                return true
     n.color = BLACK
+    return false
 ```
 <div dir='rtl' lang='he'>
 	
@@ -819,5 +835,38 @@ findCode(u)
         temp += s
     return "1"+temp+"0"
 ```
+
+<div dir='rtl' lang='he'>
+
+# מציאת גודל מקסימלי של קבוצה בלתי תלויה בעץ
+	
+</div>
+
+```python
+Max-Independent-Set(T) :
+    n = |V|, leaves = ∅
+    group0 = 0
+    group1 = 0
+    for each v in V :
+        v.prev = -1
+        v.color = 0
+        if v.deg = 1 :
+            leaves.add(v)
+    
+    while n > 2 :
+        future = ∅
+        for each leaf in leaves :
+            leaf.deg = 0
+            if leaf.prev 
+            n--
+            for each v in adj[leaf] :
+                if --v.deg = 1 :
+                    future.add(v)
+        leaves = future
+
+    return max
+```
+
+
 
 

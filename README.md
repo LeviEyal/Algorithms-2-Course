@@ -177,7 +177,7 @@ Degrees-of-vertices(g[N,N]) : O(n^2)
 
 # תת מערך עם סכום תאים מקסימלי	
 
-* גרסה מקוצרת כשצריך רק את הסכום ללא אינדקסים
+גרסה מקוצרת כשצריך רק את הסכום ללא אינדקסים
 * סיבוכיות: `O(n)`
 </div>
 	
@@ -193,7 +193,7 @@ Best-basic(A[N]) :
 ```
 <div dir='rtl' lang='he'>
 
-* גרסה רגילה כשצריך את הסכום ואת האינדקסים של תת המערך
+גרסה רגילה כשצריך את הסכום ואת האינדקסים של תת המערך
 * סיבוכיות: `O(n)`
 </div>
 
@@ -214,7 +214,7 @@ Best(A[N]) :
 ```
 <div dir='rtl' lang='he'>
 
-גרסה מעגלית:
+גרסה מעגלית כשלא צריך אינדקסים:
 * סיבוכיות: `O(n)`
 </div>
 
@@ -222,6 +222,24 @@ Best(A[N]) :
 Best-Cycle(A[N]) :
     totalSum = sum(A)
     return max(Best(A), totalSum - Best(-A))
+``` 
+
+<div dir='rtl' lang='he'>
+
+גרסה מעגלית כולל אינדקסים:
+* סיבוכיות: `O(n)`
+</div>
+
+```python
+Best-Cycle(A[N]) :
+    totalSum = sum(A)
+    max1, start1, end1 = Best(A)
+    max2, start2, end2 = Best(-A)
+    
+    if max1 > totalSum + max2 :
+        return {max1, start1, end1}
+    else
+        return {totalSum + max2, end2 + 1, start2 - 1}
 ``` 
 
 <div dir='rtl' lang='he'>

@@ -770,7 +770,7 @@ findCode(u)
         childrenCodes[u].add("10")
     else
         for each v in adj[u] :
-            if v.color = WHITE :
+            if v.color = WHITE :    //then v is child of u
                 childrenCodes[u].add(findCode(v))
         Sort(childrenCodes[u])
         temp = ""

@@ -768,15 +768,15 @@ findCode(u)
     u.color = BLACK
     if u is a leaf :
         return "10"
-    else
-        for each v in adj[u] :
-            if v.color = WHITE :    //then v is child of u
-                childrenCodes[u].add(findCode(v))
-        Sort(childrenCodes[u])
-        temp = ""
-        for each s in childrenCodes[u] :
-            temp += s
-        return "1"+temp+"0"
+        
+    for each v in adj[u] :
+        if v.color = WHITE :    //then v is child of u
+            childrenCodes[u].add(findCode(v))
+    Sort(childrenCodes[u])
+    temp = ""
+    for each s in childrenCodes[u] :
+        temp += s
+    return "1"+temp+"0"
 ```
 
 

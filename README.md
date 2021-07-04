@@ -5,6 +5,7 @@
 - ## [תוכן עניינים](#------------)
     - [פלויד וורשאל - Floyd Warshall](#Floyd-Warshall)
     - [תת מערך עם סכום תאים מקסימלי](#תת-מערך-עם-סכום-תאים-מקסימלי)
+        - [בעיית תחנות הדלק](#תת-מערך-עם-סכום-תאים-מקסימלי)
     - [תת מטריצה עם סכום תאים מקסימלי](#תת-מטריצה-עם-סכום-תאים-מקסימלי)
     - [עץ פורש מינימלי](#עץ-פורש-מינימלי)
         - [קרוסקל](#עץ-פורש-מינימלי)
@@ -240,6 +241,27 @@ Best-Cycle(A[N]) :
         return {max1, start1, end1}
     else
         return {totalSum + max2, end2 + 1, start2 - 1}
+``` 
+
+<div dir='rtl' lang='he'>
+
+בעיית תחנות הדלק:
+* מטרה למצוא תחנה ממנה אפשר ליסוע ולעשות סיבוב שלם.
+* המערך A מייצג את כמות הדלק בכל תחנהת המערך B מייצג את עלות הנסיעה בדלק מתחנה לתחנה.
+* סיבוכיות: `O(n)`
+</div>
+
+```python
+Gas-Stations-Problem(A[N], B[N]) :
+    C[N]
+    sum = 0
+    for i=0 to N :
+        C[i] = A[i] - B[i]
+        sum += C[i]
+    
+    if sum < 0 :
+        return "No solution"
+    return Best-Cycle(C)
 ``` 
 
 <div dir='rtl' lang='he'>
@@ -750,7 +772,7 @@ is-Vertex-on-Diameter(T, v) :
 
 # דייקסטרה
 מציאת המרחקים הקצרים ביותר בגרף מקודקוד נתון:
-* סיבוכיות: `O((V+E)logV)`
+* סיבוכיות: `O((V+E)logV)`  (כאשר משתמשים בערימה בינארית)
 	
 </div>
 
@@ -836,36 +858,7 @@ findCode(u)
     return "1"+temp+"0"
 ```
 
-<div dir='rtl' lang='he'>
 
-# מציאת גודל מקסימלי של קבוצה בלתי תלויה בעץ
-	
-</div>
-
-```python
-Max-Independent-Set(T) :
-    n = |V|, leaves = ∅
-    group0 = 0
-    group1 = 0
-    for each v in V :
-        v.prev = -1
-        v.color = 0
-        if v.deg = 1 :
-            leaves.add(v)
-    
-    while n > 2 :
-        future = ∅
-        for each leaf in leaves :
-            leaf.deg = 0
-            if leaf.prev 
-            n--
-            for each v in adj[leaf] :
-                if --v.deg = 1 :
-                    future.add(v)
-        leaves = future
-
-    return max
-```
 
 
 

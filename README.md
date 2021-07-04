@@ -99,7 +99,9 @@ isConnected-UnDirected-graphs(g[N,N]) :
 
 ```
 <div dir='rtl' lang='he'>
+
 בדיקת קשירות של גרפים לא מכוונים:
+* סיבוכיות: `O(n^3)`
 </div>
 	
 ```python
@@ -115,6 +117,7 @@ isConnected-Directed-graphs(g[N,N]) :
 בדיקה האם קיים מעגל שלילי בגרף מכוון:
 
 * מספיק להסתכל על האלכסון הראשי אחרי הפעלת `Floyd-Washall` 
+* סיבוכיות: `O(n^3)`
 </div>
 	
 ```python
@@ -130,10 +133,11 @@ Has-Negative-Cycles-Directed(g[N,N]) :
 
 * אין צורך להפעיל `Floyd-Washall`
 * אם קיימת צלע עם משקל שלילי אז קיים מעגל שלילי בגרף לא מכוון
+* סיבוכיות: `O(n^2)`
 </div>
 	
 ```python
-Has-Negative-Cycles-UnDirected(g[N,N]) : O(n^2)
+Has-Negative-Cycles-UnDirected(g[N,N]) : 
     for i=0 to N :
         for j=0 to N :
             if g[i,j] < 0:
@@ -147,7 +151,7 @@ Has-Negative-Cycles-UnDirected(g[N,N]) : O(n^2)
 </div>
 
 ```python
-Degrees-of-vertices(g[N,N]) : O(n^2)
+Degrees-of-vertices(g[N,N]) :
     New D[N] = {0,0,..,0}
     for i=0 to N :
         for j=0 to N :
@@ -164,7 +168,7 @@ Degrees-of-vertices(g[N,N]) : O(n^2)
 </div>
 
 ```python
-Degrees-of-vertices(g[N,N]) : O(n^2)
+Degrees-of-vertices(g[N,N]) :
     New D[N] = {0,0,..,0}
     for i=0 to N :
         for j=0 to N :

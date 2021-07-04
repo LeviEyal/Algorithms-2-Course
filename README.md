@@ -255,13 +255,13 @@ getPairFromIndex(n, i) :
 	
 ```python
 Best-basic(A[N]) :
-    maxSum = sum = -∞
+    maxSum = tempSum = -∞
 
     for i=0 to N :
-        sum += A[i]
-        maxSum = max(maxSum, sum)
-        sum = max(max, 0)
-    return max
+        tempSum += A[i]
+        maxSum = max(maxSum, tempSum)
+        tempSum = max(tempSum, 0)
+    return maxSum
 ```
 <div dir='rtl' lang='he'>
 
@@ -271,18 +271,18 @@ Best-basic(A[N]) :
 
 ```python
 Best(A[N]) :
-    max = sum = -∞
+    maxSum = tempSum = -∞
     start = end = 0
 
     for i=0 to N :
-        sum += A[i]
-        if max < sum :
-            max = sum
+        tempSum += A[i]
+        if maxSum < tempSum :
+            maxSum = tempSum
             end = i
-        if max < 0:
-            sum = 0
+        if tempSum < 0:
+            tempSum = 0
             start = i+1
-    return {max, start, end}
+    return {maxSum, start, end}
 ```
 <div dir='rtl' lang='he'>
 

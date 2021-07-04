@@ -672,15 +672,12 @@ Euler-Cycle(G) :
     while stack ≠ ∅ :
         v = stack.peek()
         if v.degree = 0 :
-            C.add(v)
-            stack.pop()
+            C.add(stack.pop())
         else :
             u = first of adj[v]
             stack.push(u)
             G.remove(u,v)
             G.remove(v,u)
-            u.degree--
-            v.degree--
     return C        
 ```
 

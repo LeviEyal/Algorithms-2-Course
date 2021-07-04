@@ -4,6 +4,7 @@
 
 - ## [תוכן עניינים](#------------)
     - [פלויד וורשאל - Floyd Warshall](#Floyd-Warshall)
+    - [בעיית הבקבוקים](#בעיית-הבקבוקים)
     - [תת מערך עם סכום תאים מקסימלי](#תת-מערך-עם-סכום-תאים-מקסימלי)
         - [בעיית תחנות הדלק](#תת-מערך-עם-סכום-תאים-מקסימלי)
     - [תת מטריצה עם סכום תאים מקסימלי](#תת-מטריצה-עם-סכום-תאים-מקסימלי)
@@ -33,6 +34,7 @@
     - [דייקסטרה Dijkstra](#דייקסטרה)
     - [בניית עץ מרשימת דרגות](#בניית-עץ-מרשימת-דרגות)
     - [איזומורפיזם של עצים](#איזומורפיזם-של-עצים)
+
 
 # Floyd Warshall
 גרף לא ממושקל: מפעילים כדי לבדוק אם קיים מסלול כלשהו בין קודקוד מסוייים לקודקוד אחר 
@@ -178,6 +180,71 @@ Degrees-of-vertices(g[N,N]) :
     sort(D)
     return D
 ```
+<div dir='rtl' lang='he'>
+
+# בעיית הבקבוקים
+* סיבוכיות: `O(n^3)`
+</div>
+
+```python
+Bottles-Problem(b1, b2) :
+    mat = Bottles-Problem-Create-Matrix(b1, b2)
+    return Bottles-Problem-Get-Paths(mat, max(b1, b2))
+```
+<div dir='rtl' lang='he'>
+
+שלב ראשון -  בניית מטריצת המעברים ממצב למצב:
+* סיבוכיות: `O(n^2)`
+</div>
+
+```python
+Bottles-Problem-Create-Matrix(b1, b2) :
+    size = (b1+1)*(b2+1)
+    max = max(b1, b2)
+    new mat[size, size]
+
+    for i=0 to b1 :
+        for j=0 to b2 :
+            index = getindex(max, i, j)
+
+            1. mat[index, getIndex(max, 0, j)] = 1
+            2. mat[index, getIndex(max, i, 0)] = 1
+            3. mat[index, getIndex(max, b1, j)] = 1
+            4. mat[index, getIndex(max, i, b2)] = 1
+            5. mat[index, getIndex(max, min(b1, i+j), i+j-min(b1, i+j))] = 1
+            6. mat[index, getIndex(max, i+j-min(b2, i+j) , min(b2, i+j))] = 1
+    return mat
+
+getIndex(n, i, j) :
+    return (n+1) * i + j
+```
+<div dir='rtl' lang='he'>
+
+שלב שני - יצירת מטריצת מסלולים ממצב למצב:
+* סיבוכיות: `O(n^2)`
+</div>
+
+```python
+Bottles-Problem-Get-Paths(mat[size, size], n) :
+    New paths[size, size]
+    for i=0 to size :
+        x1, y1 = getPairFromIndex(n, i)
+        for j=0 to size :
+            x2, y2 = getPairFromIndex(n, i)
+            if mat[i, j] ≠ ∞ :
+                paths[i, j] = "("+x1+","+y1+") → ("+x2+","+y2+")"
+    for k=0 to size :
+        for i=0 to size :
+            for j=0 to size :
+                if mat[i,j] > mat[i,k] + mat[k,j] :
+                   mat[i,j] = mat[i,k] + mat[k,j]
+                   paths[i,j] = paths[i,k] + "→" + paths[k,j]
+    return paths
+    
+getPairFromIndex(n, i) :
+    return { i/(n+1), i%(n+1) }
+```
+
 <div dir='rtl' lang='he'>
 
 # תת מערך עם סכום תאים מקסימלי	
@@ -810,14 +877,14 @@ GenerateTreebyDegrees(deg[N]) :
     j = 0
     while deg[j] = 1 : j++
     
-    New Tree[N][N] = {false}
+    New Tree[N,N] = {false}
     for i=0 to N-2 :
-        Tree[i][j] = true
-        Tree[j][i] = true
+        Tree[i,j] = true
+        Tree[j,i] = true
         if --deg[j] = 1 :
             j++
-    Tree[N-2][N-1] = true
-    Tree[N-1][N-2] = true
+    Tree[N-2,N-1] = true
+    Tree[N-1,N-2] = true
     return Tree
 ```
 
